@@ -38,8 +38,8 @@ enum jz_motor_cnt {
 
 
 /*************************** HORIZONTAL  MOTOR ************************************/
-#define HORIZONTAL_MIN_GPIO		-1	/**< motor start point */
-#define HORIZONTAL_MAX_GPIO		-1	/**< motor stop point */
+#define HORIZONTAL_MIN_GPIO		GPIO_PC(13)	/**< motor start point */
+#define HORIZONTAL_MAX_GPIO		GPIO_PC(14)	/**< motor stop point */
 #define HORIZONTAL_GPIO_LEVEL	0		/**< motor irq style */
 
 #define HORIZONTAL_ST1_GPIO		GPIO_PB(22)	/**< Phase A */
@@ -48,8 +48,8 @@ enum jz_motor_cnt {
 #define HORIZONTAL_ST4_GPIO		GPIO_PB(19)	/**< Phase D */
 
 /*************************** VERTICAL  MOTOR ************************************/
-#define VERTICAL_MIN_GPIO		-1
-#define VERTICAL_MAX_GPIO		-1
+#define VERTICAL_MIN_GPIO		GPIO_PC(18)
+#define VERTICAL_MAX_GPIO		GPIO_PB(28)
 #define VERTICAL_GPIO_LEVEL		0
 
 #define VERTICAL_ST1_GPIO		GPIO_PC(11)
@@ -152,10 +152,6 @@ struct motor_device {
 	struct device	 *dev;
 	struct miscdevice misc_dev;
 	struct motor_driver motors[HAS_MOTOR_CNT];
-	char *skip_mode;
-	unsigned int counter;
-	struct completion stop_completion;
-	unsigned int wait_stop;
 	struct jz_tcu_chn *tcu;
 	int tcu_speed;
 
